@@ -54,7 +54,7 @@ For detailed information on how to use each endpoint, refer to the Swagger docum
 
 ## Swagger Documentation
 
-The API is documented using Swagger. You can access the Swagger documentation at http://localhost:5000/api/docs.
+The API is documented using Swagger. You can access the Swagger documentation at http://localhost:5000/apidocs.
 
 ## License
 
