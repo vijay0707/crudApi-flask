@@ -3,9 +3,6 @@ name: TEST
 # Controls when the workflow will run
 on:
   # Activates the workflow; then there is a push to the main or master branch
-  push:
-    branches:
-      - master
   pull_request:
     types:
       - closed
