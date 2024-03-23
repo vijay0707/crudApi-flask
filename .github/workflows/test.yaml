@@ -28,6 +28,10 @@ jobs:
 
       - name: Install packages
         run: pip install -r requirements.txt  # install requirements to enable GitHub run tests
+        
+      - name: Run Pylint
+        run: |
+          python lint.py --path ./app.py --threshold 3
 
       - name: Run test
         run: pytest
