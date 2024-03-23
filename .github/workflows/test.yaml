@@ -5,7 +5,7 @@ on:
   # Activates the workflow; then there is a push to the main or master branch
   push:
     branches: 
-        - working-branch
+      - working-branch
 
   # allows you to manually execute this pipeline from the Actions tab.
   workflow_dispatch:
