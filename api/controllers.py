@@ -3,8 +3,11 @@ from app import app, db
 from api.models import Record
 from flasgger import swag_from
 
+@app.route('/', methods=['GET'])
+def health_check():
+    return "Success!" 
+
 @app.route('/records', methods=['POST'])
-@swag_from('swagger/create_record.yml')
 def create_record():
     data = request.json
     name = data.get('name')
@@ -20,7 +23,6 @@ def create_record():
         return jsonify({'error': 'Failed to create record'}), 500
 
 @app.route('/records/<int:id>', methods=['GET'])
-@swag_from('swagger/read_record.yml')
 def read_record(id):
     record = Record.query.get(id)
     if record:
@@ -29,7 +31,6 @@ def read_record(id):
         return jsonify({'error': 'Record not found'}), 404
 
 @app.route('/records/<int:id>', methods=['PUT'])
-@swag_from('swagger/update_record.yml')
 def update_record(id):
     data = request.json
     name = data.get('name')
@@ -49,7 +50,6 @@ def update_record(id):
         return jsonify({'error': 'Record not found'}), 404
 
 @app.route('/records/<int:id>', methods=['DELETE'])
-@swag_from('swagger/delete_record.yml')
 def delete_record(id):
     record = Record.query.get(id)
     if record:

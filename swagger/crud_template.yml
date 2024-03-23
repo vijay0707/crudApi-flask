@@ -1,0 +1,159 @@
+swagger: "2.0"
+info:
+  title: CRUD API Documentation
+  description: Documentation for the CRUD API endpoints
+  version: "1.0.0"
+paths:
+  /records:
+    post:
+      summary: Create a new record
+      description: Create a new record in the database.
+      parameters:
+        - in: body
+          name: record
+          description: The record object to be created
+          required: true
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+                description: The name of the record
+              age:
+                type: integer
+                description: The age of the record
+      responses:
+        201:
+          description: Record created successfully
+          schema:
+            type: object
+            properties:
+              id:
+                type: integer
+                description: The unique identifier of the record
+              name:
+                type: string
+                description: The name of the record
+              age:
+                type: integer
+                description: The age of the record
+        400:
+          description: Bad request
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+                description: A message describing the error
+
+  /records/{id}:
+    get:
+      summary: Retrieve a record by ID
+      description: Retrieve a record from the database using its unique identifier.
+      parameters:
+        - in: path
+          name: id
+          description: ID of the record to retrieve
+          required: true
+          schema:
+            type: integer
+      responses:
+        200:
+          description: Record retrieved successfully
+          schema:
+            type: object
+            properties:
+              id:
+                type: integer
+                description: The unique identifier of the record
+              name:
+                type: string
+                description: The name of the record
+              age:
+                type: integer
+                description: The age of the record
+        404:
+          description: Record not found
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+                description: A message describing the error
+
+    put:
+      summary: Update a record by ID
+      description: Update an existing record in the database using its unique identifier.
+      parameters:
+        - in: path
+          name: id
+          description: ID of the record to update
+          required: true
+          schema:
+            type: integer
+        - in: body
+          name: record
+          description: The record object with updated values
+          required: true
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+                description: The updated name of the record
+              age:
+                type: integer
+                description: The updated age of the record
+      responses:
+        200:
+          description: Record updated successfully
+          schema:
+            type: object
+            properties:
+              id:
+                type: integer
+                description: The unique identifier of the record
+              name:
+                type: string
+                description: The updated name of the record
+              age:
+                type: integer
+                description: The updated age of the record
+        400:
+          description: Bad request
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+                description: A message describing the error
+        404:
+          description: Record not found
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+                description: A message describing the error
+
+    delete:
+      summary: Delete a record by ID
+      description: Delete an existing record from the database using its unique identifier.
+      parameters:
+        - in: path
+          name: id
+          description: ID of the record to delete
+          required: true
+          schema:
+            type: integer
+      responses:
+        204:
+          description: Record deleted successfully
+        404:
+          description: Record not found
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+                description: A message describing the error
