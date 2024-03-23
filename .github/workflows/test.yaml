@@ -31,7 +31,7 @@ jobs:
         
       - name: Run Pylint
         run: |
-          python lint.py --path ./app.py --threshold 3
+          python lint.py --path ./app.py --threshold 5
 
       - name: Run test
         run: pytest
