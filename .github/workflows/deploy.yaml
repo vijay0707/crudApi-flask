@@ -48,8 +48,21 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Build and push
-        uses: docker/build-push-action@v5
+      - name: Docker Build 
+        run: |
+             docker build -t vijaysaran07/flask-crud-api:${{ github.sha }} -t vijaysaran07/flask-crud-api:latest .
+      
+      - name: Run Trivy vulnerability scanner
+        uses: aquasecurity/trivy-action@master
         with:
-          push: true
-          tags: vijaysaran07/flask-crud-api
+          image-ref: 'vijaysaran07/flask-crud-api:${{ github.sha }}'
+          format: 'table'
+          exit-code: '1'
+          ignore-unfixed: true
+          vuln-type: 'os,library'
+          severity: 'CRITICAL,HIGH'
+      
+      - name: Docker Push
+        run: |
+             docker push vijaysaran07/flask-crud-api:${{ github.sha }}
+                 
