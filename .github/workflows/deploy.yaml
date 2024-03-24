@@ -61,5 +61,5 @@ jobs:
       
       - name: Docker Push
         run: |
-          docker push vijaysaran07/flask-crud-api:${{ github.sha }}
+          docker push vijaysaran07/flask-crud-api
 
